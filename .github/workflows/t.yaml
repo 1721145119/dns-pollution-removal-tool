@@ -1,0 +1,14 @@
+on:
+  workflow_dispatch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      # ... 你的其他步骤 ...
+      - name: Setup upterm session
+        uses: owenthereal/action-upterm@v1
+        with:
+          ## 可选：若无人连接，30分钟后自动关闭
+          wait-timeout-minutes: 180
