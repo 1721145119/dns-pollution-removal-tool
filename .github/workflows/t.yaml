@@ -1,14 +1,21 @@
+name: Debug with Upterm
+
 on:
-  workflow_dispatch
+  workflow_dispatch:   # 支持手动触发，便于按需调试
 
 jobs:
-  build:
+  debug:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      # ... 你的其他步骤 ...
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # 可选：在此处添加你的构建或测试步骤
+      # - name: Run build
+      #   run: make build
+
       - name: Setup upterm session
         uses: owenthereal/action-upterm@v1
         with:
-          ## 可选：若无人连接，30分钟后自动关闭
+          # 若无人连接，30 分钟后自动关闭会话，避免浪费资源
           wait-timeout-minutes: 180
